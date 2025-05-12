@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXOP   100
+#define MAXOP   100 // Max operator/operand size
+#define MAXVAL  100 // Max depth for value stack
 #define NUMBER  '0' //Signal for found number  
 
 
@@ -11,13 +12,35 @@
     Result gets pushed back onto stack
 */
 
+// Stack pointer
+int sp = 0;
+double val[MAXVAL];
 
-void push(double f);
-double pop(void);
+// Push value to stack
+void push(double f) {
+    if (sp < MAXVAL) {
+        val[sp++] = f;
+    } else {
+        printf("error: stack full, cannot push %g\n", f);
+    }
+}
+
+// Pop value and return value from the stack
+double pop(void) {
+    if (sp > 0) {
+        return val[--sp];
+    } else {
+        printf("error: cannot pop value, stack empty %d", sp);
+        return 0.0;
+    }
+}
+
 int getop(char s[]);
 
 int main() {
+    printf("startup ...");
     int type;
+    // Stores values for calculations that need to be performed in order (division and subtracting)
     double op2;
     char s[MAXOP];
 
