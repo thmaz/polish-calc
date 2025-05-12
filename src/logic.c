@@ -25,7 +25,7 @@ void push(double f) {
     }
 }
 
-// Pop value and return value from the stack
+// Pop and return value from the stack
 double pop(void) {
     if (sp > 0) {
         return val[--sp];
@@ -35,7 +35,15 @@ double pop(void) {
     }
 }
 
-int getop(char s[]);
+int getch(void);
+void ungetch(int);
+
+// Get numeric operator or operand
+int getop(char s[]) {
+    int i, c;
+
+    
+}
 
 int main() {
     printf("startup ...");
